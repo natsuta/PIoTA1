@@ -1,6 +1,7 @@
 from bluetooth import *
 from pprint import pprint
 from pushbullet import Pushbullet
+import socket
 
 pb = Pushbullet("o.KFPP3JCPriu5ydbOQYan1jqCSSP3jia6")
 
@@ -21,11 +22,9 @@ if target_address is not None:
 else:
 	print("could not find target bluetooth device nearby")
 
-port = get_available_port(target_address)
-s = BluetoothSocket(RFCOMM)
+port = 3
+s = socket.socket(socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOMM)
 s.connect((target_address, port))
 
-push = pb.push_note("Test", "Test")
-
-s.send("Test")
+s.send(bytes("Test", "UTF-8"))
 s.close()
