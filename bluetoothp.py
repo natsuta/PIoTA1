@@ -1,7 +1,10 @@
 from bluetooth import *
 from pprint import pprint
+from pushbullet import Pushbullet
 
-target_name = 'Galaxy A8 (2018)'
+pb = Pushbullet("o.KFPP3JCPriu5ydbOQYan1jqCSSP3jia6")
+
+target_name = "Galaxy A8 (2018)"
 target_address = None
 
 while target_address is None:
@@ -18,9 +21,11 @@ if target_address is not None:
 else:
 	print("could not find target bluetooth device nearby")
 
-port = 3
+port = get_available_port(target_address)
 s = BluetoothSocket(RFCOMM)
 s.connect((target_address, port))
+
+push = pb.push_note("Test", "Test")
 
 s.send("Test")
 s.close()
