@@ -16,13 +16,13 @@ def getData():
 def printData(currentDT, temp, humid):
 	print("Date: " + currentDT.strftime("%Y/%m/%d"))
 	print("Time: " + currentDT.strftime("%H:%M:%S"))
-	print("Temperature: " + (string) temp)
+	print("Temperature: " + temp)
 	print("Humidity: " + humid)
 
 # log data into database
 def logData(currentDT, temp, humid):
 	conn=sqlite3.connect(dbname)
-	    curs=conn.cursor()
+	curs=conn.cursor()
     curs.execute("INSERT INTO SENSEHAT_data values(datetime('now'), (?))", (temp,))
     conn.commit()
     conn.close()
