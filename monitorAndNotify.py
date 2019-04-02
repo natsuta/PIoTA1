@@ -13,7 +13,7 @@ def getData():
 		temp = round(temp, 1)
 		humid = round(humid, 1)
 		printData(currentDT, temp, humid)
-		logData(currentDT, temp, humid)
+		logData(temp, humid)
 
 # Prints out the information for confirmation purposes
 def printData(currentDT, temp, humid):
@@ -23,12 +23,17 @@ def printData(currentDT, temp, humid):
 	print("Humidity: {}".format(humid))
 
 # log data into database
-def logData(currentDT, temp, humid):
+def logData(temp, humid):
 	conn=sqlite3.connect(dbname)
 	curs=conn.cursor()
 	curs.execute("INSERT INTO SENSEHAT_data values(datetime('now'), (?), (?))", (temp, humid))
-	if curs.execute("SELECT date('now')") != curs.execute("SELECT timestamp FROM SenseHat_data"):
-		send_notif(temp, humid)
+	with open('config.json', 'r') as json_file:
+		data = json.load(json_file)
+		# if temperature of humidity is outside of ranges defined in config.json
+		if temp < data['min_temperature'] or temp > data['max_temperature'] or humid < data["min_humidity"] or humid > data["max_humidity"]:
+			# if statement should be != for once a day sending, use == for testing
+			if curs.execute("SELECT date('now')") != curs.execute("SELECT timestamp FROM SenseHat_data"):
+				send_notif(temp, humid)
 	conn.commit()
 	conn.close()
 
