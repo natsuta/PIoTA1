@@ -11,7 +11,7 @@ ___
 ***
 Python Version (Currently): [3.7.3](https://www.python.org/downloads/)
 ***
-### Some Packages Used
+### Some Python Modules Used and _How to Install_
 For API Handling (e.g. Pushbullet)  
   `pip install requests`
   
