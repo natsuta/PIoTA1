@@ -27,7 +27,7 @@ def logData(currentDT, temp, humid):
 	conn=sqlite3.connect(dbname)
 	curs=conn.cursor()
 	curs.execute("INSERT INTO SENSEHAT_data values(datetime('now'), (?), (?))", (temp, humid))
-	if curs.execute("SELECT date('now')") == curs.execute("SELECT timestamp FROM SenseHat_data"):
+	if curs.execute("SELECT date('now')") != curs.execute("SELECT timestamp FROM SenseHat_data"):
 		send_notif(temp, humid)
 	conn.commit()
 	conn.close()
