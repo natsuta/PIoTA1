@@ -5,6 +5,7 @@ sense = sense_hat.SenseHat()
 
 # get data from SenseHat
 def getData():
+	print("Getting temperature and humidity details from Sense HAT")
 	currentDT = datetime.datetime.now()
 	temp = sense.get_temperature()
 	humid = sense.get_humidity()
@@ -69,7 +70,7 @@ def send_notif(temp, humid):
 		else:
 			msgbody = "{}\n{}".format(msgbody, line4a)	
 	
-	push = pb.push_note("Weather Report", msgbody)
+	push = pb.push_note("Database Weather Report", msgbody)
 	print("Notification sent")
 
 

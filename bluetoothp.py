@@ -1,34 +1,47 @@
 from bluetooth import *
 from pprint import pprint
 from pushbullet import Pushbullet
-import sense_hat, json
+import sense_hat, json, shlex
+import subprocess as sp
 
 sense = sense_hat.SenseHat()
 pb = Pushbullet("o.KFPP3JCPriu5ydbOQYan1jqCSSP3jia6")
-target_name = "Galaxy A8 (2018)"
 
 def getData():
+	print("Getting temperature and humidity details from Sense HAT")
 	temp = sense.get_temperature()
 	humid = sense.get_humidity()
 	
 	temp = round(temp, 1)
 	humid = round(humid, 1)
 	
-	search(target_name)
-	send_notif(temp, humid)
+	search(temp, humid)
 	
-def search(target_name):
+	
+def search(temp, humid):
 	target_address = None
-	print("Searching for Bluetooth device", target_name)
-	while target_address is None:
-		nearby_devices = discover_devices(lookup_names = True)
-		for bdaddr, bname in nearby_devices:
-			if target_name == bname:
-				target_address = bdaddr
-				break
+	print("Searching for paired Bluetooth device")
+	p1 = sp.Popen(["bt-device", "-l"], stdout=sp.PIPE, close_fds=True)
+	p2 = sp.Popen(["grep", "-oP", "'(?<=\()[^\)]+'"], stdin=p1.stdout, stdout=sp.PIPE, close_fds=True)
+	data = p2.stdout.readlines()
+	print(data)
+	
+	for macadr in data:
+		while target_address is None:
+			print(macadr)
+			nearby_devices = discover_devices(lookup_names = True)
+			for bdaddr, bname in nearby_devices:
+				print(baddr, bname)
+				if macadr == target_address:
+					target_name = bname
+					target_address = bdaddr
+					break
+				else:
+					continue
 
 	if target_address is not None:
-		print("Found target Bluetooth device with address", target_address)
+		print("Found target Bluetooth device {} with address {}".format(target_name, target_address))
+		send_notif(temp, humid)
 	else:
 		print("Could not find target Bluetooth device nearby")
 
@@ -54,7 +67,7 @@ def send_notif(temp, humid):
 		else:
 			msgbody = "{}\n{}".format(msgbody, line4a)	
 	
-	push = pb.push_note("Weather Report", msgbody)
+	push = pb.push_note("Bluetooth Weather Report", msgbody)
 	print("Notification sent")
 
 def main():
