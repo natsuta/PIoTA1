@@ -57,7 +57,7 @@ class notification:
 		
 		msgbody = "{}\n{}".format(line1, line2)
 		
-		with open('config.json', 'r') as json_file:
+		with open('/home/pi/Documents/PIoTA1/config.json', 'r') as json_file:
 			data = json.load(json_file)
 			if temp < data['min_temperature'] or temp > data['max_temperature']:
 				msgbody = "{}\n{}".format(msgbody, line3b)
