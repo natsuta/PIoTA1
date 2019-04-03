@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from bluetooth import *
 from pprint import pprint
 from pushbullet import Pushbullet
