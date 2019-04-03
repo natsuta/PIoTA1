@@ -2,7 +2,7 @@
 
 import sense_hat, datetime, time, sqlite3, json
 from pushbullet import Pushbullet
-dbname='weather.db'
+dbname='/home/pi/Documents/PIoTA1/weather.db'
 sense = sense_hat.SenseHat()
 
 
