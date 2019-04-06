@@ -47,18 +47,18 @@ def main():
     dataframe = dataframe.drop(["temp", "humid"], axis=1)
     dataframe = dataframe.rename(columns={'timestamp':'Date'})
     dataframe = dataframe.rename(columns=str.title)
-    print(dataframe)
+    # print(dataframe)
 
     # Creating the CSV with all the dataframe changes
     # Optional user generated file name
-    """ filename = input(
+    filename = input(
         'Enter a filename (click enter to keep default): ') or 'report.csv'
     # File Creation
     dataframe.to_csv(filename, index=0)
 
     print("Creating Report...")
     time.sleep(0.5)
-    print("Report Created \nFilename: " + filename) """
+    print("Report Created \nFilename: " + filename)
 
     # Closing DB Connection
     conn.close()
