@@ -40,19 +40,14 @@ def main():
     # Inserting Status & Message Column
     dataframe.insert(3, 'Status', status)
     # Formatting Dataframe for final output
-    # Converting timestamp data to Datetime Format (localised)
-    DATE_FORMAT = "%d/%m/%Y"  # change this to adjust formatting of date
-    # Setting column names to Title Case
     # Dropping the temperature and humidity data, comment this to keep them in the report
     dataframe = dataframe.drop(["temp", "humid"], axis=1)
     dataframe = dataframe.rename(columns={'timestamp':'Date'})
     dataframe = dataframe.rename(columns=str.title)
-    # print(dataframe)
-
     # Creating the CSV with all the dataframe changes
     # Optional user generated file name
     filename = input(
-        'Enter a filename (click enter to keep default): ') or 'report.csv'
+        'Enter a filename (click enter to keep default)\nAdd .csv to custom name: ') or 'report.csv'
     # File Creation
     dataframe.to_csv(filename, index=0)
 
