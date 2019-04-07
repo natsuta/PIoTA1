@@ -26,21 +26,21 @@ def main():
     # Creating an iterable series to have a dynamic Status and message applied.
     # Temperature and Humidity are set in config.
     status = pd.Series([])
-    for i in range(len(dataframe)): 
-        if dataframe['temp'][i] >= data['max_temperature']: 
-            status[i]="BAD: Temperature is too High"
+    for i in range(len(dataframe)):
+        if dataframe['temp'][i] >= data['max_temperature']:
+            status[i] = "BAD: Temperature is too High"
 
         elif dataframe['temp'][i] <= data["min_temperature"]:
-            status[i]="BAD: Temperature is too Low"
+            status[i] = "BAD: Temperature is too Low"
   
-        elif dataframe['humid'][i] >= data['max_humidity']:  
-            status[i]="BAD: Humidity is too High"
+        elif dataframe['humid'][i] >= data['max_humidity']:
+            status[i] = "BAD: Humidity is too High"
 
         elif dataframe['humid'][i] <= data['min_humidity']:
-            status[i]="BAD: Humidity is too Low"
+            status[i] = "BAD: Humidity is too Low"
 
         else: 
-            status[i]= "OK: Readings are Normal"
+            status[i] = "OK: Readings are Normal"
     # Inserting Status & Message Column
     dataframe.insert(3, 'Status', status)
     # Formatting Dataframe for final output
