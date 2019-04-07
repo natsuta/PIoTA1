@@ -30,7 +30,10 @@ class Main:
     @staticmethod
     def createImageTwo():
         """Using Seaborn"""
-        sns_plot = sns.swarmplot(x='Temp', y='Humid', data=Main.graphData)
+        sns_plot = sns.barplot(x='Status', y='Temp', data=Main.graphData)
+        plt.xlabel('Status')
+        plt.ylabel('Frequency')
+        plt.title('Frequency of Temperature Ranges', color='red')
         fig2 = sns_plot.get_figure()
         fig2.savefig('Image2.png', bbox_inches='tight')
 
