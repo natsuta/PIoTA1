@@ -1,0 +1,34 @@
+
+-- With the data that you have, what kind of data visualisation graph should be used?
+   (Scatter plots, Bar charts and Histograms, Line plots, Pie charts, etc.)
+   Since the data is mostly weather data I thought the best graphical representation is a Scatter or a Bar plot. I chose these because
+   they show a good representation of a large dataset. They also make it really easy to see relationships between one variable and another. 
+   In the scatter plot I made for instance I could see a relationship between humidity and temperature in the dataset that we had. 
+   This is not a causation but it gives a good picture of the situation. For the barplot I thought it would be a good way to display the 
+   frequency of temperatures hitting above or below the set status and how many were actually OK. which it did show me. 
+   
+-- What should be represented in the above graph? Why did you make that decision?
+   I chose humidity and temperature for one and temperature and Status for the other. I would have also generated another one for Humdity 
+   and Status if I was continuing to use this script. My main reasons for choosing these were that as previously mentioned they make it
+   easy to see relationships. It is also very interesting to see the variety of temperature over a few minutes in an hour or over a couple 
+   days.
+   The main issue I had was being able to fit all the values on the graph, I needed to work out a way to display the labels better but 
+   I ran out of time. 
+
+-- Python supports numerous data visualisation libraries. Which two libraries did you
+   narrow it down to?
+   I narrowed it down to matplotlib and seaborn. Matplotlib also uses pandas while creating graphs and you use some matplotlib in 
+   seaborn    because seaborn is a high level implementation of some of matplotlib. I went with these two for a couple of reasons 
+   really, matplotlib and pandas were a good choice for me because I had some experience in them (still had to do a lot of research) 
+   and they are very popular so there is very good documentation. They are both used heavily in data science and data analytics. 
+   I chose seaborn because when I was looking for a second library it seemed one of the most appealing visually and I should be able 
+   to use some of my matplotlib knowledge while getting a lot of visual benefits. 
+
+-- Advantages/Disadvantages
+   The advantages I could see from a developer standpoint was they were all very useable across libraries, they had similarities
+   and were very easy to use. They are also very easy to use in the iPython framework (which I didn't use for the assignment but
+   have used). However the disadvantages I found were seaborn was a little memory intensive - could have been my code - and for 
+   a large dataset this could be troublesome. But there are probably plenty of ways around it and supercomputers and such. 
+   I would like to mention that pandas has proven incredibly useful in data visualisation as well as data manipulation and I 
+   think I was barely scratching the surface. I know people want to get others on board using Python/Pandas to replace excel as
+   a data visualisation platform, however I can see the difficulties. 

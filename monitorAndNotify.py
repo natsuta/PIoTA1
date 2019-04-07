@@ -91,6 +91,7 @@ class notification:
         push = pb.push_note("Database Weather Report", msgbody)
         print("Notification sent")
 
+<<<<<<< HEAD
 class Main:
     def main():
         temp = weather.getTemp()
@@ -104,3 +105,17 @@ class Main:
             notification.send_notif(temp, humid)
 
 Main.main()
+=======
+def main():
+	temp = weather.getTemp()
+	humid = weather.getHumid()
+	
+	weather.printData(temp, humid)
+	database.logData(temp, humid)
+	database.displayData()
+	
+	if (notification.check(temp, humid)):
+		notification.send_notif(temp, humid)
+	
+main()
+>>>>>>> d47307a0500e2c74351cb534436e5784b9069836
