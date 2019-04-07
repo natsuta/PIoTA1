@@ -72,10 +72,11 @@ class notification:
 		push = pb.push_note("Bluetooth Weather Report", msgbody)
 		print("Notification sent")
 
-def main():
-	if (btsearch.search()):
-		temp = weather.getTemp()
-		humid = weather.getHumid()
-		notification.send_notif(temp, humid)
+class Main:
+	def main():
+		if (btsearch.search()):
+			temp = weather.getTemp()
+			humid = weather.getHumid()
+			notification.send_notif(temp, humid)
 	
-main()
+Main.main()
