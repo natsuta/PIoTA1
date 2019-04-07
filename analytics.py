@@ -23,7 +23,7 @@ class Main:
     def createImageOne():
         """Using Matplotlib"""
         plt_plot = plt.scatter(Main.humidity, Main.temp, edgecolors='face', alpha=0.5)
-        plt.xlabel('Humidity'), plt.ylabel('Temp'), plt.title('Test')
+        plt.xlabel('Humidity'), plt.ylabel('Temp'), plt.title('Temperature vs Humidity')
         fig1 = plt_plot.get_figure()
         fig1.savefig('Image1.png', bbox_inches='tight')
 
